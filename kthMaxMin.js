@@ -38,52 +38,12 @@ Testcase 2: 4th smallest element in the given array is 15.
 
 */
 
-
-function Min(min,k){
-        //return  min
-        //console.log("KthMin: ",min)
-        console.log("KthMin: ",min[k-1])
-}
-
 function Max(max,k){
-        //return  max
-      //  console.log("KthMax: ",max)
         console.log("KthMax: ",max[k-1])
 }
 
-function kthMaxMin(arr,k){
-       let min = sortAscArr(arr)
-       // let min = sortAscArr({...arr})
-       Min(min,k)
-       // console.log(min)
-       let max = sortDscArr(arr)
-        //let max = sortDscArr({...arr})
-        Max(max,k)
-        //console.log(max)
 
-        // Min(min,k)
-        // Max(max,k)
-
-}
-function sortAscArr(unsortedArray){
-       
-        let arrLen = unsortedArray.length,temp
-
-        for(let i = 0; i<arrLen;i++){
-                for(let j=0; j<arrLen;j++){
-                        if(unsortedArray[i]<unsortedArray[j]){
-                                temp = unsortedArray[i]
-                                unsortedArray[i] = unsortedArray[j]
-                                unsortedArray[j] = temp
-                       }else{
-
-                       }
-               }
-        }
-        return unsortedArray
-}
-
-function sortDscArr(unsortedArray){
+function dscArr(unsortedArray){
         let arrLen = unsortedArray.length,temp
         for(let i = 0; i<arrLen;i++){
                 for(let j=0; j<arrLen;j++){
@@ -91,12 +51,41 @@ function sortDscArr(unsortedArray){
                                 temp = unsortedArray[i]
                                 unsortedArray[i] = unsortedArray[j]
                                 unsortedArray[j] = temp
-                       }else{
-
                        }
                }
         }
         return unsortedArray
 }
+
+function Min(min,k){
+        console.log("KthMin: ",min[k-1])
+}
+
+function ascArr(unsortedArray){
+       
+        let arrLen = unsortedArray.length,temp=0
+
+        for(let i = 1; i<arrLen;i++){
+                for(let j=0; j<arrLen;j++){
+                        if(unsortedArray[i]<unsortedArray[j]){
+                                temp = unsortedArray[i]
+                                unsortedArray[i] = unsortedArray[j]
+                                unsortedArray[j] = temp
+                       }
+               }
+        }
+     
+        return  unsortedArray
+}
+
+function kthMaxMin(arr,k){
+        let min = ascArr([...arr])
+        console.log(min)
+        let max = dscArr([...arr])
+        console.log(max)
+
+        Min(min,k)
+        Max(max,k)
+ }
 
 kthMaxMin([7,10,4,3,20,15],3)
